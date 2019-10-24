@@ -1,9 +1,9 @@
-let button = document.createElement('button');
-button.className = 'btn btn-lg btn-primary shadow-sm d-block mx-auto my-3';
-button.textContent = 'Click Me!';
+let alertButton = document.createElement('button');
+alertButton.className = 'btn btn-lg btn-primary shadow-sm d-block mx-auto my-3';
+alertButton.textContent = 'Click Me!';
 let main = document.querySelector('main');
-main.insertAdjacentElement('afterbegin', button);
-button.addEventListener('click', () => Swal.fire(`You're Awesome!`));
+main.insertAdjacentElement('afterbegin', alertButton);
+alertButton.addEventListener('click', () => Swal.fire(`You're Awesome!`));
 
 let form = document.querySelector('form');
 form.addEventListener('submit', () => {
@@ -26,11 +26,11 @@ p.appendChild(pText);
 main.insertBefore(p, main.children[3]);
 p.addEventListener('click', () => p.style.color = randomColor());
 
-let button2 = document.createElement('button');
-button2.className = 'btn btn-lg btn-primary shadow-sm d-block mx-auto my-3';
-button2.textContent = 'Add Name';
-main.insertBefore(button2, main.children[4]);
-button2.addEventListener('click', () => {
+let spanButton = document.createElement('button');
+spanButton.className = 'btn btn-lg btn-primary shadow-sm d-block mx-auto my-3';
+spanButton.textContent = 'Add Name';
+main.insertBefore(spanButton, main.children[4]);
+spanButton.addEventListener('click', () => {
 	let span = document.createElement('span');
 	span.style.display = 'inline-block';
 	span.style.margin = '1em';
@@ -47,16 +47,21 @@ function randomColor() {
 	return colors[Math.floor(Math.random() * colors.length)];
 }
 
-let friends = ['Shannon', 'Tony', 'Kim', 'Rachael', 'David', 'Lorenz', 'Shelby', 'Erika', 'Chelsea', 'Amber'];
+const friends = ['Shannon', 'Tony', 'Kim', 'Rachael', 'David', 'Lorenz', 'Shelby', 'Erika', 'Chelsea', 'Amber'];
+let i = 0;
 
 let buttonSelector = document.querySelectorAll('button');
-let button3 = buttonSelector[3];
-button3.addEventListener('click', () => {
-	let randomFriend = friends[Math.floor(Math.random() * friends.length)];
-	let li = document.createElement('li');
-	li.className = 'list-group-item';
-	let liText = document.createTextNode(randomFriend);
-	li.appendChild(liText);
-	let ul = document.querySelector('ul');
-	ul.appendChild(li);
+let friendButton = buttonSelector[3];
+friendButton.addEventListener('click', () => {
+	if (i >= friends.length) {
+		friendButton.disabled = 'true';
+	} else {
+		let li = document.createElement('li');
+		li.className = 'list-group-item';
+		let liText = document.createTextNode(friends[i]);
+		li.appendChild(liText);
+		let ul = document.querySelector('ul');
+		ul.appendChild(li);
+		i++;
+	}
 });
